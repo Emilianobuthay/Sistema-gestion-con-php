@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 01, 2017 at 07:43 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-05-2022 a las 19:43:53
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pig`
+-- Base de datos: `granja`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Estructura de tabla para la tabla `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Volcado de datos para la tabla `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
@@ -42,7 +43,7 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `breed`
+-- Estructura de tabla para la tabla `breed`
 --
 
 CREATE TABLE `breed` (
@@ -51,7 +52,7 @@ CREATE TABLE `breed` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `breed`
+-- Volcado de datos para la tabla `breed`
 --
 
 INSERT INTO `breed` (`id`, `name`) VALUES
@@ -63,7 +64,7 @@ INSERT INTO `breed` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pigs`
+-- Estructura de tabla para la tabla `pigs`
 --
 
 CREATE TABLE `pigs` (
@@ -75,20 +76,25 @@ CREATE TABLE `pigs` (
   `gender` varchar(10) NOT NULL,
   `arrived` varchar(10) NOT NULL,
   `remark` text NOT NULL,
-  `health_status` varchar(50) NOT NULL
+  `health_status` varchar(50) NOT NULL,
+  `precio` int(11) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `peso2` varchar(10) DEFAULT NULL,
+  `peso3` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pigs`
+-- Volcado de datos para la tabla `pigs`
 --
 
-INSERT INTO `pigs` (`id`, `pigno`, `breed_id`, `weight`, `img`, `gender`, `arrived`, `remark`, `health_status`) VALUES
-(2, 'pig-fms-938', 4, '50kg', 'uploadfolder/Koala.jpg', 'female', '2017-11-02', 'This is the content', 'active');
+INSERT INTO `pigs` (`id`, `pigno`, `breed_id`, `weight`, `img`, `gender`, `arrived`, `remark`, `health_status`, `precio`, `edad`, `peso2`, `peso3`) VALUES
+(2, 'xs/20191', 4, '50kg', 'uploadfolder/Koala.jpg', 'female', '2022-08-10', 'This is the content', 'Proceso De Cobro', 444444, 1, '222', ''),
+(3, 'xs/wg44g', 3, '200', 'uploadfolder/1.jpg', 'female', '2022-04-14', 'dfdsf', 'active', 22222, 2, '543', '322');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quarantine`
+-- Estructura de tabla para la tabla `quarantine`
 --
 
 CREATE TABLE `quarantine` (
@@ -96,61 +102,70 @@ CREATE TABLE `quarantine` (
   `pig_no` varchar(50) NOT NULL,
   `date_q` varchar(10) NOT NULL,
   `reason` text NOT NULL,
-  `breed` varchar(50) NOT NULL
+  `breed` varchar(50) NOT NULL,
+  `preciovent` int(11) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `weight` varchar(10) DEFAULT NULL,
+  `peso3` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `admin`
+-- Indices de la tabla `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `breed`
+-- Indices de la tabla `breed`
 --
 ALTER TABLE `breed`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pigs`
+-- Indices de la tabla `pigs`
 --
 ALTER TABLE `pigs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `quarantine`
+-- Indices de la tabla `quarantine`
 --
 ALTER TABLE `quarantine`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT de la tabla `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `breed`
+-- AUTO_INCREMENT de la tabla `breed`
 --
 ALTER TABLE `breed`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `pigs`
+-- AUTO_INCREMENT de la tabla `pigs`
 --
 ALTER TABLE `pigs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `quarantine`
+-- AUTO_INCREMENT de la tabla `quarantine`
 --
 ALTER TABLE `quarantine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
